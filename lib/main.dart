@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_ordering_gta/Item.dart';
 
@@ -58,6 +59,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey.shade100,
       appBar: AppBar(
         title: Text('Search your restaurant'),
         shape: RoundedRectangleBorder(
@@ -70,13 +72,69 @@ class MainScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ValueListenableBuilder(
-          valueListenable: listNotifier,
-          builder: (context, value, child) {
-            return Column(
+        child: Column(
+          children: [
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CategoryButton(text: 'Pizzeria'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CategoryButton(text: 'Coffee Shop'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CategoryButton(text: 'Fast Food'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CategoryButton(text: 'Seafood Restaurant'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CategoryButton(text: 'Chinese Restaurant'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CategoryButton(text: 'Vegan Restaurant'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CategoryButton(text: 'Sushi Bar'),
+                ],
+              ),
+            ),
+   /*         Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: ListView.builder(
+                Flexible(
+                  flex: 2,
+                  child: CategoryButton(text: 'Category 1'),
+                ),
+                SizedBox(width: 10),
+                Flexible(
+                  flex: 1,
+                  child: CategoryButton(text: 'Category 2'),
+                ),
+                SizedBox(width: 10),
+                Flexible(
+                  flex: 1,
+                  child: CategoryButton(text: 'Category 3'),
+                ),
+
+              ],
+            ), */
+            // Box between Category and ListBuilder widgets
+            SizedBox(
+              height: 5.0,
+            ),
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: listNotifier,
+                builder: (context, value, child) {
+                  return ListView.builder(
                     itemCount: value.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -85,13 +143,29 @@ class MainScreen extends StatelessWidget {
                         listNotifier: listNotifier,
                       ),
                     ),
-                  ),
-                ),
-              ],
-            );
-          },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class CategoryButton extends StatelessWidget {
+  final String text;
+
+  const CategoryButton({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        // Handle category button press
+      },
+      child: Text(text),
     );
   }
 }
@@ -142,13 +216,70 @@ class _MyListTileState extends State<MyListTile> {
               child: ListTile(
                 title: Text(
                   widget.restaurant.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
-                subtitle:
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Rating: 4.5'),
+                        Icon(
+                          Icons.star_border_purple500_rounded,
+                          color: CupertinoColors.systemYellow,
+                        ),
+                      ],
+                    ),
                     Text(widget.restaurant.description ?? 'No description'),
+                    Row(
+                      children: [
+                        Tooltip(
+                          message: 'Estimated time',
+                          child: Icon(
+                              Icons.access_time_rounded,
+                            color: Colors.blueGrey.shade700,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text('25 min'),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Tooltip(
+                          // if delivery costs == 0, change icon color
+                          message: 'Delivery cost',
+                          child: Icon(
+                            Icons.delivery_dining_outlined,
+                            color: Colors.blueGrey.shade700,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text('2\$'),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Tooltip(
+                            message: 'Minumum order value',
+                            child: Icon(
+                              Icons.shopping_bag_outlined,
+                              color: Colors.blueGrey.shade700,
+                            ),
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text('min. 5\$'),
+                      ],
+                    ),
+                  ],
+                ),
                 trailing: ClipOval(
              //     child: Align(
             //        alignment: Alignment.centerRight,
@@ -160,6 +291,9 @@ class _MyListTileState extends State<MyListTile> {
               //    ),
                 ),
                 ),
+                hoverColor: Colors.deepOrangeAccent,
+                focusColor: Colors.deepOrange,
+                tileColor: Colors.white,
                 style: ListTileStyle.list,
               ),
             ),
