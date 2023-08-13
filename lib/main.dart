@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_ordering_gta/Item.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +13,7 @@ var listOfRestaurant = [
     color: Colors.red,
     imageMainAssetPath: 'assets/foto_pizza_this.png',
     imageLogoAssetPath: 'assets/img_pizza_this.png',
+    restaurantCategory: RestaurantCategory.pizzeria,
   ),
   Restaurant(
     id: 'IQ',
@@ -22,6 +22,7 @@ var listOfRestaurant = [
     color: Colors.brown,
     imageMainAssetPath: 'assets/foto_bean_machine.png',
     imageLogoAssetPath: 'assets/img_bean_machine.png',
+    restaurantCategory: RestaurantCategory.coffeeShop,
   ),
   Restaurant(
     id: 'ads',
@@ -30,6 +31,16 @@ var listOfRestaurant = [
     color: Colors.deepOrangeAccent,
     imageMainAssetPath: 'assets/foto_cluckin_bell.png',
     imageLogoAssetPath: 'assets/img_cluckin_bell.png',
+    restaurantCategory: RestaurantCategory.fastFood,
+  ),
+  Restaurant(
+    id: 'sds',
+    name: 'Super Star Cafe',
+    description: 'Coffee for everyone',
+    color: Colors.brown.shade300,
+    imageMainAssetPath: 'assets/foto_super_star_cafe.png',
+    imageLogoAssetPath: 'assets/img_super_star_cafe.png',
+    restaurantCategory: RestaurantCategory.coffeeShop,
   ),
 ];
 
@@ -51,13 +62,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key, required this.listNotifier});
 
   final ListNotifier listNotifier;
 
   @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  String selectedCategory = '';
+
+  @override
   Widget build(BuildContext context) {
+    List<Restaurant> filteredRestaurants = widget.listNotifier.value;
+
+
+    for (var restaurant in filteredRestaurants) {
+      debugPrint('Restaurant: ${restaurant.name}, Category: ${restaurant.restaurantCategory}');
+    }
+
+    debugPrint('Selected Category: $selectedCategory');
+
+    if (selectedCategory == 'all') {
+     filteredRestaurants = widget.listNotifier.value.toList();
+    }
+    else {
+      if (selectedCategory.isNotEmpty) {
+        debugPrint('Is not empty');
+        //  debugPrint('W: ${}');
+        filteredRestaurants = widget.listNotifier.value
+            .where(
+                (restaurant) =>
+            restaurant.restaurantCategory.name == selectedCategory)
+            .toList();
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade100,
       appBar: AppBar(
@@ -74,39 +116,103 @@ class MainScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  CategoryButton(text: 'Pizzeria'),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  CategoryButton(text: 'Coffee Shop'),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  CategoryButton(text: 'Fast Food'),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  CategoryButton(text: 'Seafood Restaurant'),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  CategoryButton(text: 'Chinese Restaurant'),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  CategoryButton(text: 'Vegan Restaurant'),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  CategoryButton(text: 'Sushi Bar'),
-                ],
+            Container(
+              color: Colors.blueGrey.shade100,
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryButton(
+                        text: 'All',
+                        onPressed: () {
+                          setState(() {
+                            selectedCategory = 'all';
+                          });
+                        }
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Pizzeria',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'pizzeria';
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Coffee Shop',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'coffeeShop';
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Fast Food',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'fastFood';
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Seafood Restaurant',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'seafoodRestaurant';
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Chinese Restaurant',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'chineseRestaurant';
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Vegan Restaurant',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'veganRestaurant';
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CategoryButton(
+                      text: 'Sushi Bar',
+                      onPressed: () {
+                        setState(() {
+                          selectedCategory = 'sushiBar';
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-   /*         Row(
+            /*         Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
@@ -131,20 +237,15 @@ class MainScreen extends StatelessWidget {
               height: 5.0,
             ),
             Expanded(
-              child: ValueListenableBuilder(
-                valueListenable: listNotifier,
-                builder: (context, value, child) {
-                  return ListView.builder(
-                    itemCount: value.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MyListTile(
-                        restaurant: value[index],
-                        listNotifier: listNotifier,
-                      ),
-                    ),
-                  );
-                },
+              child: ListView.builder(
+                itemCount: filteredRestaurants.length,
+                itemBuilder: (context, index) => Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: MyListTile(
+                    restaurant: filteredRestaurants[index],
+                    listNotifier: widget.listNotifier,
+                  ),
+                ),
               ),
             ),
           ],
@@ -156,15 +257,15 @@ class MainScreen extends StatelessWidget {
 
 class CategoryButton extends StatelessWidget {
   final String text;
+  final VoidCallback onPressed;
 
-  const CategoryButton({Key? key, required this.text}) : super(key: key);
+  const CategoryButton({Key? key, required this.text, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        // Handle category button press
-      },
+      onPressed: onPressed,
       child: Text(text),
     );
   }
@@ -199,7 +300,8 @@ class _MyListTileState extends State<MyListTile> {
       child: Column(
         children: [
           Image.asset(
-            widget.restaurant.imageMainAssetPath ?? 'assets/foto_cluckin_bell.png',
+            widget.restaurant.imageMainAssetPath ??
+                'assets/foto_cluckin_bell.png',
             fit: BoxFit.cover,
           ),
           ColoredBox(
@@ -239,7 +341,7 @@ class _MyListTileState extends State<MyListTile> {
                         Tooltip(
                           message: 'Estimated time',
                           child: Icon(
-                              Icons.access_time_rounded,
+                            Icons.access_time_rounded,
                             color: Colors.blueGrey.shade700,
                           ),
                         ),
@@ -266,11 +368,11 @@ class _MyListTileState extends State<MyListTile> {
                           width: 10,
                         ),
                         Tooltip(
-                            message: 'Minumum order value',
-                            child: Icon(
-                              Icons.shopping_bag_outlined,
-                              color: Colors.blueGrey.shade700,
-                            ),
+                          message: 'Minumum order value',
+                          child: Icon(
+                            Icons.shopping_bag_outlined,
+                            color: Colors.blueGrey.shade700,
+                          ),
                         ),
                         SizedBox(
                           width: 2,
@@ -281,15 +383,15 @@ class _MyListTileState extends State<MyListTile> {
                   ],
                 ),
                 trailing: ClipOval(
-             //     child: Align(
-            //        alignment: Alignment.centerRight,
+                  //     child: Align(
+                  //        alignment: Alignment.centerRight,
                   child: Image.asset(
                     widget.restaurant.imageLogoAssetPath ??
-                    'assets/img_pizza_this.png',
-                       //  width: 34,
-                       //  height: 34,
-              //    ),
-                ),
+                        'assets/img_pizza_this.png',
+                    //  width: 34,
+                    //  height: 34,
+                    //    ),
+                  ),
                 ),
                 hoverColor: Colors.deepOrangeAccent,
                 focusColor: Colors.deepOrange,
@@ -315,13 +417,27 @@ class Restaurant {
   final Color? color; //check if null-aware is necessary
   final String? imageMainAssetPath;
   final String? imageLogoAssetPath;
+  final RestaurantCategory restaurantCategory;
 
   const Restaurant({
     required this.id,
     required this.name,
     required this.description,
+    required this.restaurantCategory,
     this.color = Colors.lightGreen,
     this.imageMainAssetPath,
     this.imageLogoAssetPath,
   });
+}
+
+enum RestaurantCategory {
+  all,
+  pizzeria,
+  coffeeShop,
+  fastFood,
+  seafoodRestaurant,
+  chineseRestaurant,
+  veganRestaurant,
+  sushiBar,
+  other,
 }
