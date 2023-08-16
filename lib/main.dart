@@ -74,20 +74,22 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
-      home: RecommendedFoodDetail(),
-//      home: MainScreen(
-//        listNotifier: ListNotifier(listOfRestaurant),
-//      ),
+      //     home: RecommendedFoodDetail(),
+      home: MainScreen(
+        listNotifier: ListNotifier(listOfRestaurant),
+      ),
     );
   }
 }
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final Restaurant restaurant;
+  const RecommendedFoodDetail({super.key, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -119,11 +121,10 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
               ],
             ),
-
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(20),
               child: Container(
-                color: Colors.white,
+                //         color: Colors.white,
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 child: Center(
@@ -132,6 +133,13 @@ class RecommendedFoodDetail extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 22,
                     ),
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
                 ),
               ),
@@ -144,16 +152,26 @@ class RecommendedFoodDetail extends StatelessWidget {
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
-                'assets/foto_well_stacked_pizza.png',
-                width: double.maxFinite,
-                fit: BoxFit.cover,
+                this.restaurant.imageMainAssetPath ??
+                    'assets/foto_cluckin_bell.png',
+              width: double.maxFinite,
+              fit: BoxFit.cover,
               ),
+
             ),
           ),
           SliverToBoxAdapter(
-            child: Text(
-                'The Well Stacked Pizza Co. is a parody of Pizza Hut, although its logo is similar to Domino\'s Pizza, as well as the name itself possibly referring to the stacking nature of dominoes. Like many food-related businesses, Well Stacked Pizza provide food to replenish health in Grand Theft Auto: Vice City and Grand Theft Auto: San Andreas, but are not accessible in Grand Theft Auto: Vice City Stories. The name is a term for a woman with large breasts: "well stacked". In Grand Theft Auto: San Andreas, many of the pedestrian customers that spawn in the pizzeria are usually seen eating pizza; the player can also go behind the counter to where a Fire Extinguisher pickup may be found in the kitchen. Pizza Boy delivery scooters owned by the chain are obtainable in both Grand Theft Auto: Vice City and Grand Theft Auto: San Andreas. Pizza Boy is a Grand Theft Auto: Vice City side mission begin when boarding the scooter outside any Well Stacked delivery window. Successful completion of level 10 returning to the window rewards \$5000, increases maximum health 50 points to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success.'),
-          ),
+              child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20),
+                child: Text('Cos tam'),
+              )
+            ],
+          )
+              //          Text(
+              //             'The Well Stacked Pizza Co. is a parody of Pizza Hut, although its logo is similar to Domino\'s Pizza, as well as the name itself possibly referring to the stacking nature of dominoes. Like many food-related businesses, Well Stacked Pizza provide food to replenish health in Grand Theft Auto: Vice City and Grand Theft Auto: San Andreas, but are not accessible in Grand Theft Auto: Vice City Stories. The name is a term for a woman with large breasts: "well stacked". In Grand Theft Auto: San Andreas, many of the pedestrian customers that spawn in the pizzeria are usually seen eating pizza; the player can also go behind the counter to where a Fire Extinguisher pickup may be found in the kitchen. Pizza Boy delivery scooters owned by the chain are obtainable in both Grand Theft Auto: Vice City and Grand Theft Auto: San Andreas. Pizza Boy is a Grand Theft Auto: Vice City side mission begin when boarding the scooter outside any Well Stacked delivery window. Successful completion of level 10 returning to the window rewards \$5000, increases maximum health 50 points to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success.'),
+              ),
         ],
       ),
     );
@@ -433,119 +451,131 @@ class MyListTile extends StatefulWidget {
 class _MyListTileState extends State<MyListTile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        border: Border.all(
-          color: Colors.grey,
-          width: 1.0,
-        ),
-        //  borderRadius: BorderRadius.circular(5),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            widget.restaurant.imageMainAssetPath ??
-                'assets/foto_cluckin_bell.png',
-            fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        debugPrint('${widget.restaurant}');
+        print('Clicked');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecommendedFoodDetail(restaurant: widget.restaurant,),
           ),
-          ColoredBox(
-            color: Colors.white10,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1.0,
-                ),
-                //   borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                title: Text(
-                  widget.restaurant.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border.all(
+            color: Colors.grey,
+            width: 1.0,
+          ),
+          //  borderRadius: BorderRadius.circular(5),
+        ),
+        child: Column(
+          children: [
+            Image.asset(
+              widget.restaurant.imageMainAssetPath ??
+                  'assets/foto_cluckin_bell.png',
+              fit: BoxFit.cover,
+            ),
+            ColoredBox(
+              color: Colors.white10,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1.0,
                   ),
+                  //   borderRadius: BorderRadius.circular(10),
                 ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text('Rating: 4.5'),
-                        Icon(
-                          Icons.star_border_purple500_rounded,
-                          color: CupertinoColors.systemYellow,
-                        ),
-                      ],
+                child: ListTile(
+                  title: Text(
+                    widget.restaurant.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
-                    Text(widget.restaurant.description ?? 'No description'),
-                    Row(
-                      children: [
-                        Tooltip(
-                          message: 'Estimated time',
-                          child: Icon(
-                            Icons.access_time_rounded,
-                            color: Colors.blueGrey.shade700,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text('25 min'),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Tooltip(
-                          // if delivery costs == 0, change icon color
-                          message: 'Delivery cost',
-                          child: Icon(
-                            Icons.delivery_dining_outlined,
-                            color: Colors.blueGrey.shade700,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text('2\$'),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Tooltip(
-                          message: 'Minumum order value',
-                          child: Icon(
-                            Icons.shopping_bag_outlined,
-                            color: Colors.blueGrey.shade700,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text('min. 5\$'),
-                      ],
-                    ),
-                  ],
-                ),
-                trailing: ClipOval(
-                  //     child: Align(
-                  //        alignment: Alignment.centerRight,
-                  child: Image.asset(
-                    widget.restaurant.imageLogoAssetPath ??
-                        'assets/img_pizza_this.png',
-                    //  width: 34,
-                    //  height: 34,
-                    //    ),
                   ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text('Rating: 4.5'),
+                          Icon(
+                            Icons.star_border_purple500_rounded,
+                            color: CupertinoColors.systemYellow,
+                          ),
+                        ],
+                      ),
+                      Text(widget.restaurant.description ?? 'No description'),
+                      Row(
+                        children: [
+                          Tooltip(
+                            message: 'Estimated time',
+                            child: Icon(
+                              Icons.access_time_rounded,
+                              color: Colors.blueGrey.shade700,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text('25 min'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Tooltip(
+                            // if delivery costs == 0, change icon color
+                            message: 'Delivery cost',
+                            child: Icon(
+                              Icons.delivery_dining_outlined,
+                              color: Colors.blueGrey.shade700,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text('2\$'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Tooltip(
+                            message: 'Minumum order value',
+                            child: Icon(
+                              Icons.shopping_bag_outlined,
+                              color: Colors.blueGrey.shade700,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text('min. 5\$'),
+                        ],
+                      ),
+                    ],
+                  ),
+                  trailing: ClipOval(
+                    //     child: Align(
+                    //        alignment: Alignment.centerRight,
+                    child: Image.asset(
+                      widget.restaurant.imageLogoAssetPath ??
+                          'assets/img_pizza_this.png',
+                      //  width: 34,
+                      //  height: 34,
+                      //    ),
+                    ),
+                  ),
+                  hoverColor: Colors.deepOrangeAccent,
+                  focusColor: Colors.deepOrange,
+                  tileColor: Colors.white,
+                  style: ListTileStyle.list,
                 ),
-                hoverColor: Colors.deepOrangeAccent,
-                focusColor: Colors.deepOrange,
-                tileColor: Colors.white,
-                style: ListTileStyle.list,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
