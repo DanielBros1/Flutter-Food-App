@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/models/list_of_user_opinion.dart';
 import 'user_opinion_screen_detail.dart';
+import 'widgets/limited_text.dart';
 import 'widgets/rating_starts.dart';
 
 class UserOpinionsScreen extends StatelessWidget {
@@ -45,7 +46,10 @@ class UserOpinionsScreen extends StatelessWidget {
                           SizedBox(height: 4),
                           RatingStars(rating: opinion.rating),
                           SizedBox(height: 4),
-                          Text(opinion.comment),
+                          LimitedText(
+                            text: opinion.comment,
+                            maxLength: 200,
+                          ),
                         ],
                       ),
                       onTap: () {
@@ -68,3 +72,4 @@ class UserOpinionsScreen extends StatelessWidget {
     );
   }
 }
+

@@ -47,11 +47,11 @@ class _MyListTileState extends State<MyListTile> {
         ),
         child: Column(
           children: [
-            Image.asset(
-              widget.restaurant.imageMainAssetPath ??
-                  'assets/foto_cluckin_bell.png',
-              fit: BoxFit.cover,
-            ),
+              Image.asset(
+                widget.restaurant.imageMainAssetPath ??
+                    'assets/foto_cluckin_bell.png',
+                fit: BoxFit.cover,
+              ),
             ColoredBox(
               color: Colors.white10,
               child: Container(

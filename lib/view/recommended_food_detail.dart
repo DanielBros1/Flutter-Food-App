@@ -50,7 +50,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 child: Center(
                   child: Text(
-                    this.restaurant.name,
+                    restaurant.name,
                     style: TextStyle(
                       fontSize: 22,
                     ),
@@ -72,14 +72,12 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: Colors.yellowAccent.shade100,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                this.restaurant.imageMainAssetPath ??
-                    'assets/foto_cluckin_bell.png',
-                width: double.maxFinite,
-                fit: BoxFit.cover,
+                background: Image.asset(
+                  restaurant.imageMainAssetPath ?? 'assets/foto_cluckin_bell.png',
+                  width: double.maxFinite,
+                  fit: BoxFit.cover,
+                ),
               ),
-
-            ),
           ),
           SliverToBoxAdapter(
               child: Column(
