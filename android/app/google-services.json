@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "898488212654",
+    "project_id": "food-ordering-8db",
+    "storage_bucket": "food-ordering-8db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898488212654:android:573958198ecf2a33c9e13f",
+        "android_client_info": {
+          "package_name": "com.example.food_ordering_gta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6-QzYKWXEZE83Jxo8PryIaofC5uM-4sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

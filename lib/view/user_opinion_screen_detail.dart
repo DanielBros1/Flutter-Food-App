@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/models/user_opinion.dart';
-import 'widgets/rating_starts.dart';
+import 'widgets/rating_stars.dart';
 
 
 class UserOpinionDetailScreen extends StatelessWidget {

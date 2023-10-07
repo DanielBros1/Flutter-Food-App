@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/models/list_of_user_opinion.dart';
 import 'user_opinion_screen_detail.dart';
 import 'widgets/limited_text.dart';
-import 'widgets/rating_starts.dart';
+import 'widgets/rating_stars.dart';
 
 class UserOpinionsScreen extends StatelessWidget {
   const UserOpinionsScreen({super.key});
