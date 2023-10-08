@@ -42,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
+      debugPrint('Sukces');
       // pop the loading circle
       // Navigator.of(context).pop();
     } catch (e) {
@@ -69,23 +70,23 @@ class _LoginPageState extends State<LoginPage> {
         }
       }
 
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text(errorMessage),
-            actions: <Widget>[
-              TextButton(
-                child: Text('Close'),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
-                },
-              ),
-            ],
-          );
-        },
-      );
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return AlertDialog(
+      //       title: Text('Error'),
+      //       content: Text(errorMessage),
+      //       actions: <Widget>[
+      //         TextButton(
+      //           child: Text('Close'),
+      //           onPressed: () {
+      //             Navigator.of(context).pop(); // Close the dialog
+      //           },
+      //         ),
+      //       ],
+      //     );
+      //   },
+      // );
     }
   }
 

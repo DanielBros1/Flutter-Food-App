@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_gta/auth/auth_page.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:food_ordering_gta/view/main_screen.dart';
 import 'firebase_options.dart';
 
 Future <void> main() async {
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
-  home: AuthPage(),
+ // home: AuthPage(),
+      home: MainScreen(),
  //     home: HomeScreen(
  //       listNotifier: ListNotifier(listOfRestaurant),
  //     ),

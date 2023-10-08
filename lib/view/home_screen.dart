@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../data/models/restaurant.dart';
 import '../data/providers/list_notifier.dart';
-import 'widgets/main/category_button.dart';
-import 'widgets/main/my_list_tile.dart';
+import 'widgets/home_screen/category_button.dart';
+import 'widgets/home_screen/my_list_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.listNotifier});
@@ -65,7 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 10,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
             icon: const Icon(Icons.search),
           ),
           SizedBox(
