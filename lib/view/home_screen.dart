@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../data/models/restaurant.dart';
 import '../data/providers/list_notifier.dart';
 import 'widgets/home_screen/category_button.dart';
@@ -18,6 +19,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String selectedCategory = '';
   double distanceValue = 50;
+  bool isFavoriteHovering = false;
+  bool isSearchHovering = false;
+  bool isLogoutHovering = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,47 +61,105 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         actions: [
-          // Favorite restaurants
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
+          MouseRegion(
+            onEnter: (_) {
+              setState(() {
+                isFavoriteHovering = true;
+              });
             },
-            icon: const Icon(Icons.search),
+            onExit: (_) {
+              setState(() {
+                isFavoriteHovering = false;
+              });
+            },
+            // Favorite restaurants
+            child: IconButton(
+              onPressed: () {},
+              icon: isFavoriteHovering
+                  ? const Icon(
+                      Icons.favorite_rounded,
+                      color: Colors.red,
+                    )
+                  : Icon(
+                      Icons.favorite_border,
+                      color: Colors.red.shade300,
+                    ),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          MouseRegion(
+            onEnter: (_) {
+              setState(() {
+                isSearchHovering = true;
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                isSearchHovering = false;
+              });
+            },
+            child: IconButton(
+              onPressed: () {},
+              icon: isSearchHovering
+                  ? Icon(
+                      Icons.saved_search_sharp,
+                      color: Colors.blue,
+                    )
+                  : Icon(
+                      Icons.search,
+                      color: Colors.blue.shade600,
+                    ),
+            ),
           ),
           SizedBox(
             width: 10,
           ),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
+            icon: const Icon(Icons.logout,
+            color: Colors.black,),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+
+                    return AlertDialog(
+                      title: Text(
+                        'Are you sure you want to log out?',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      content: LottieBuilder.asset(
+                        "animations/logout_animation.json",
+                        width: 50,
+                        height: 100,
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Logout'),
+                        ),
+                      ],
+                    );
+                  });
+            },
           ),
         ],
         title: Text('Search your restaurant'),
         toolbarOpacity: 0.7,
         toolbarHeight: 40,
       ),
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(55),
-      //   child: MenuAppBar(
-      //       title: 'Food Ordering',
-      //     actions: [
-      //       IconButton(
-      //           onPressed: () {
-      //             debugPrint('Notification button pressed')
-      //           },
-      //           icon: Icon(Icons.search),
-      //       ),
-      //     ],
-      //
-      //   ),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
