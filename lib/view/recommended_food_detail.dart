@@ -30,6 +30,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 Spacer(),
                 //todo add restaurant to favourite restaurant
+                //todo przy 3 zamownieniach w tej samej restauracji --> propozycja dodania restauranji do ulubionych
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,

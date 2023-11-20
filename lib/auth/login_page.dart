@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +23,12 @@ class _LoginPageState extends State<LoginPage> {
     }
     if (_passwordController.text.trim().isEmpty) {
       debugPrint('Puste haslo');
+
       ///todo:: utworzyc w Build czerwony wykrzynik i informacje o niepoprawnym
       ///todo:: hasle i emailu. Domyslnie na false, ustawiac na True, gdy w tym ifie
     }
-    debugPrint (_emailController.text.trim());
-    debugPrint (_passwordController.text);
+    debugPrint(_emailController.text.trim());
+    debugPrint(_passwordController.text);
     //loading circle
     // showDialog(
     //   context: context,
@@ -67,9 +69,19 @@ class _LoginPageState extends State<LoginPage> {
           case 'configuration-not-found':
             errorMessage = "Incorrect address E-mail.";
             break;
+          case 'invalid-login-credentials':
+            errorMessage = "Login credentials are incorrect";
         }
       }
-
+      AwesomeDialog(
+              context: context,
+              dialogType: DialogType.error,
+              animType: AnimType.topSlide,
+              title: 'Login error',
+              desc: errorMessage,
+              btnOkOnPress: () {},
+              btnOkColor: Colors.blueGrey.shade200)
+          .show();
       // showDialog(
       //   context: context,
       //   builder: (BuildContext context) {

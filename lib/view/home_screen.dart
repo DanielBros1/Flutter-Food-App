@@ -1,6 +1,6 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import '../data/models/restaurant.dart';
 import '../data/providers/list_notifier.dart';
 import 'widgets/home_screen/category_button.dart';
@@ -51,10 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.blueGrey.shade100,
       appBar: AppBar(
         backgroundColor: Colors.brown.shade200,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
-        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20),
@@ -117,42 +113,28 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 10,
           ),
           IconButton(
-            icon: const Icon(Icons.logout,
-            color: Colors.black,),
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.black,
+            ),
             onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-
-                    return AlertDialog(
-                      title: Text(
-                        'Are you sure you want to log out?',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      content: LottieBuilder.asset(
-                        "animations/logout_animation.json",
-                        width: 50,
-                        height: 100,
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            FirebaseAuth.instance.signOut();
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Logout'),
-                        ),
-                      ],
-                    );
-                  });
+              AwesomeDialog(
+                      context: context,
+                      dialogBackgroundColor: Colors.blueGrey.shade200,
+                      dialogType: DialogType.question,
+                      animType: AnimType.topSlide,
+                      title: 'Logout?',
+                      desc: 'Are you sure you want to log out?',
+                      btnCancelText: 'Cancel',
+                      btnOkText: 'Logout',
+                      btnCancelOnPress: () {
+                      },
+                      btnOkOnPress: () {
+                        FirebaseAuth.instance.signOut();
+                      },
+                      btnCancelColor: Colors.blueGrey,
+                      btnOkColor: Colors.redAccent)
+                  .show();
             },
           ),
         ],

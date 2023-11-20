@@ -1,3 +1,5 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -32,13 +34,40 @@ class _RegisterPageState extends State<RegisterPage> {
   Future signUp() async {
     if (passwordConfirm()) {
       //create a user
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      );
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+        );
+      } catch (e) {
+        String errorMessage = "An error occurred during sign-up ";
+        if (e is FirebaseAuthException) {
+          errorMessage = e.code;
+          debugPrint(e.code);
+          switch (e.code) {
+            case 'weak-password':
+              errorMessage = "Password should be at lest 6 charackters ";
+          }
+        }
+        AwesomeDialog(
+            context: context,
+            dialogType: DialogType.error,
+            animType: AnimType.topSlide,
+            title: 'Login error',
+            desc: errorMessage,
+            btnOkOnPress: () {},
+            btnOkColor: Colors.blueGrey.shade200
+        ).show();
+      }
 
       //add user details
     } else {}
+  }
+
+  Future addUserDetails() async {
+    await FirebaseFirestore.instance.collection('users').add({
+      //
+    });
   }
 
 
@@ -47,6 +76,15 @@ class _RegisterPageState extends State<RegisterPage> {
       return true;
     } else {
       debugPrint('Password in different in two fields');
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.topSlide,
+          title: 'Login error',
+          desc: 'passwords are different in two fields',
+          btnOkOnPress: () {},
+          btnOkColor: Colors.blueGrey.shade200
+      ).show();
       return false;
     }
   }
