@@ -29,7 +29,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
+            return const AlertDialog(
               contentPadding: EdgeInsets.all(16.0),
               content: Text('Password reset link sent!'),
             );
@@ -39,7 +39,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               content: Text(e.message.toString()),
             );
           });
@@ -60,8 +60,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
               'Enter yout email and we will send you a password reset link',
               textAlign: TextAlign.center,
@@ -70,7 +70,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           // E-mail textField
@@ -95,15 +95,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
 
           MaterialButton(
             onPressed: passwordReset,
-            child: Text('Reset Password'),
             color: Colors.brown,
             textColor: Colors.white,
+            child: const Text('Reset Password'),
           ),
         ],
       ),

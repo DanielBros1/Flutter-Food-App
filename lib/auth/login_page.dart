@@ -19,42 +19,23 @@ class _LoginPageState extends State<LoginPage> {
 
   Future signIn() async {
     if (_emailController.text.trim().isEmpty) {
-      debugPrint('Pusty mail');
     }
     if (_passwordController.text.trim().isEmpty) {
-      debugPrint('Puste haslo');
-
-      ///todo:: utworzyc w Build czerwony wykrzynik i informacje o niepoprawnym
-      ///todo:: hasle i emailu. Domyslnie na false, ustawiac na True, gdy w tym ifie
     }
-    debugPrint(_emailController.text.trim());
-    debugPrint(_passwordController.text);
-    //loading circle
-    // showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return Center(child: const CircularProgressIndicator.adaptive());
-    //   },
-    // );
+
+
     try {
-      debugPrint('Hello');
       // Attempt to sign in
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         //trim() creates a string without leading and trailing whitespaces
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
-      debugPrint('Sukces');
-      // pop the loading circle
-      // Navigator.of(context).pop();
     } catch (e) {
-      debugPrint("Hello from catch e");
       String errorMessage = "An error occurred during sign-in ";
 
       // Exception handling
       if (e is FirebaseAuthException) {
-        debugPrint(e.code);
-        debugPrint('Hello from catch FirebaseException');
         switch (e.code) {
           case 'invalid-email':
             errorMessage = "The email address is badly formatted.";
@@ -119,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Icon(
@@ -127,23 +108,23 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.grey.shade700,
                   size: 120,
                 ),
-                SizedBox(height: 65),
-                Text(
+                const SizedBox(height: 65),
+                const Text(
                   'Hello Again!',
                   style: TextStyle(
                     fontSize: 42,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   """Welcome back, you've been missed""",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
 
@@ -169,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -196,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -210,10 +191,10 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return ForgotPasswordPage();
+                            return const ForgotPasswordPage();
                           }));
                         },
-                        child: Text(
+                        child: const Text(
                           'Forgot password? ',
                           style: TextStyle(
                             color: Colors.blue,
@@ -224,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -234,12 +215,12 @@ class _LoginPageState extends State<LoginPage> {
                   child: GestureDetector(
                     onTap: signIn,
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.brown,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Sign in',
                           style: TextStyle(
@@ -252,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -260,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Not a member? ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -268,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     GestureDetector(
                       onTap: widget.showRegisterPage,
-                      child: Text(
+                      child: const Text(
                         'Register now',
                         style: TextStyle(
                           color: Colors.blue,
@@ -278,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
               ],

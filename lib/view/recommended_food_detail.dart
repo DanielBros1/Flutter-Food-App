@@ -10,7 +10,7 @@ class RecommendedFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blueGrey.shade50,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -22,22 +22,20 @@ class RecommendedFoodDetail extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.blueGrey.shade200,
                   ),
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Icon(
                     Icons.clear,
                     color: Colors.white,
                   ),
                 ),
-                Spacer(),
-                //todo add restaurant to favourite restaurant
-                //todo przy 3 zamownieniach w tej samej restauracji --> propozycja dodania restauranji do ulubionych
+                const Spacer(),
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blueGrey.shade200,
                   ),
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Icon(
                     Icons.shopping_cart_outlined,
                     color: Colors.white,
                   ),
@@ -45,25 +43,25 @@ class RecommendedFoodDetail extends StatelessWidget {
               ],
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(20),
+              preferredSize: const Size.fromHeight(20),
               child: Container(
-                //         color: Colors.white,
                 width: double.maxFinite,
-                padding: EdgeInsets.only(top: 5, bottom: 10),
-                child: Center(
-                  child: Text(
-                    restaurant.name,
-                    style: TextStyle(
-                      fontSize: 22,
-                    ),
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                padding: const EdgeInsets.only(top: 5, bottom: 10),
+                decoration:  BoxDecoration(
+                  color: Colors.blueGrey.shade50,
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
+                ),
+                child: Center(
+                  child: Text(
+                    restaurant.name,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
                 ),
               ),
             ),
@@ -82,53 +80,46 @@ class RecommendedFoodDetail extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-              child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Text("""Here's an explanation of this line of code:
-
-                    FirebaseAuth.instance: This part accesses the singleton instance of the FirebaseAuth class. FirebaseAuth is the main class provided by the firebase_auth package that manages Firebase Authentication in your Flutter app.
-
-                        .authStateChanges(): This is a method provided by FirebaseAuth that returns a stream of authentication state changes. The stream emits events whenever a user signs in, signs out, or when the authentication state changes in any way.
-
-          In your code, this stream is used within a StreamBuilder widget. The StreamBuilder listens to the stream returned by authStateChanges() and rebuilds its child widgets whenever the authentication state changes. It takes two important parameters:
-
-    stream: This is the stream that the StreamBuilder listens to for events, which, in this case, are changes in the authentication state.
-
-        builder: This is a callback function that gets called whenever there is a new event on the stream (i.e., when the authentication state changes). It receives two arguments: the context and a snapshot.
-
-    context: This is the current build context.
-
-    snapshot: This is an object that contains the most recent data emitted by the stream.
-Here's an explanation of this line of code:
-
-FirebaseAuth.instance: This part accesses the singleton instance of the FirebaseAuth class. FirebaseAuth is the main class provided by the firebase_auth package that manages Firebase Authentication in your Flutter app.
-
-.authStateChanges(): This is a method provided by FirebaseAuth that returns a stream of authentication state changes. The stream emits events whenever a user signs in, signs out, or when the authentication state changes in any way.
-
-In your code, this stream is used within a StreamBuilder widget. The StreamBuilder listens to the stream returned by authStateChanges() and rebuilds its child widgets whenever the authentication state changes. It takes two important parameters:
-
-stream: This is the stream that the StreamBuilder listens to for events, which, in this case, are changes in the authentication state.
-
-builder: This is a callback function that gets called whenever there is a new event on the stream (i.e., when the authentication state changes). It receives two arguments: the context and a snapshot.
-
-context: This is the current build context.
-
-snapshot: This is an object that contains the most recent data emitted by the stream.
-
-In the builder callback, the code checks the snapshot to determine whether there is user authentication data (snapshot.hasData). If there is user data, it returns a HomePage widget, indicating that the user is signed in. If there is no user data (i.e., snapshot.hasData is false), it returns a LoginPage widget, indicating that the user is not signed in.
-
-In summary, the line of code you asked about sets up a stream that listens for changes in the user's authentication state and uses a StreamBuilder to conditionally build different UI components based on whether the user is authenticated or not.
-    In the builder callback, the code checks the snapshot to determine whether there is user authentication data (snapshot.hasData). If there is user data, it returns a HomePage widget, indicating that the user is signed in. If there is no user data (i.e., snapshot.hasData is false), it returns a LoginPage widget, indicating that the user is not signed in.
-
-    In summary, the line of code you asked about sets up a stream that listens for changes in the user's authentication state and uses a StreamBuilder to conditionally build different UI components based on whether the user is authenticated or not."""),
-              )
-            ],
-          )
-              //          Text(
-              //             'The Well Stacked Pizza Co. is a parody of Pizza Hut, although its logo is similar to Domino\'s Pizza, as well as the name itself possibly referring to the stacking nature of dominoes. Like many food-related businesses, Well Stacked Pizza provide food to replenish health in Grand Theft Auto: Vice City and Grand Theft Auto: San Andreas, but are not accessible in Grand Theft Auto: Vice City Stories. The name is a term for a woman with large breasts: "well stacked". In Grand Theft Auto: San Andreas, many of the pedestrian customers that spawn in the pizzeria are usually seen eating pizza; the player can also go behind the counter to where a Fire Extinguisher pickup may be found in the kitchen. Pizza Boy delivery scooters owned by the chain are obtainable in both Grand Theft Auto: Vice City and Grand Theft Auto: San Andreas. Pizza Boy is a Grand Theft Auto: Vice City side mission begin when boarding the scooter outside any Well Stacked delivery window. Successful completion of level 10 returning to the window rewards \$5000, increases maximum health 50 points to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success. to 150 and is required for achieving 100% Completion (a software glitch then prevents the scooter from spawning at the Vercetti Estate after mission success.'),
-              ),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 20, right: 20),
+                  child: const Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur dui vel est commodo varius. "
+                      "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n\n"
+                      "Duis vel suscipit massa. Integer non justo vitae odio dictum eleifend. Aliquam erat volutpat. Donec efficitur "
+                      "ultricies quam, a venenatis neque eleifend id. Phasellus vel velit in est fermentum gravida vitae ac neque.\n\n"
+                      "Quisque vitae nisl id quam suscipit ultricies. Maecenas ac justo quis risus imperdiet posuere. "
+                      "Nam ullamcorper mi vel est fringilla, vel euismod justo ullamcorper. Ut euismod, libero a finibus varius, "
+                      "turpis nunc laoreet elit, in semper eros libero non purus. In hac habitasse platea dictumst. Nam vel tortor "
+                      "non libero efficitur bibendum. Fusce elementum odio et orci tincidunt, eu facilisis justo tristique.\n\n"
+                      "Ut quis enim elit. Nam ultrices tristique velit vel iaculis. Sed nec lacus vel nunc eleifend ullamcorper "
+                      "ut non est. Nam non diam at justo fringilla venenatis. Pellentesque habitant morbi tristique senectus "
+                      "et netus et malesuada fames ac turpis egestas. Aenean id ex id odio vestibulum accumsan. Duis dictum ex vel "
+                      "nisi cursus, ac iaculis quam egestas. Sed at felis nec justo aliquam dapibus a a odio.\n\n"
+                      "Ut vel magna quis mauris laoreet ultrices. Sed ornare, ex non tincidunt vulputate, libero dolor venenatis "
+                      "libero, nec laoreet nisi odio vel sapien. Sed gravida fringilla augue, non venenatis neque. Integer sit amet erat "
+                      "metus. Fusce dapibus tristique nibh, nec fermentum dui ultricies non. Nullam nec neque vel tortor suscipit cursus "
+                      "vel eu risus. Nulla facilisi. Curabitur feugiat leo vel tincidunt efficitur. Quisque venenatis lectus vel turpis "
+                      "aliquam, nec fermentum nunc suscipit.\n\n"
+                      "Proin suscipit bibendum ultricies. Sed posuere risus nec bibendum laoreet. Integer dapibus ultricies metus vel posuere. "
+                      "Curabitur quis nulla id elit interdum tristique nec at tortor. Nam varius mi ac mauris varius, vitae lacinia velit "
+                      "venenatis. Etiam ac nulla ac augue suscipit tincidunt. Curabitur vestibulum metus et ex aliquam, at venenatis nunc "
+                      "rhoncus. Sed tincidunt orci quis lacus mattis, at consectetur turpis venenatis. Proin aliquet quam et nibh fermentum, "
+                      "vel auctor justo varius.\n\n"
+                      "Nullam bibendum dui ut lacinia eleifend. Phasellus varius justo et posuere tincidunt. Morbi at libero nec nisi gravida "
+                      "posuere. Suspendisse potenti. Aenean ultrices lectus a justo bibendum, ac elementum elit rhoncus. Curabitur nec feugiat "
+                      "orci. In hac habitasse platea dictumst. Sed vulputate turpis nec justo fringilla, ut placerat nisl auctor. Praesent quis "
+                      "est a justo tempor dictum. Integer et massa at metus maximus bibendum. Vivamus elementum bibendum nisl, id interdum ex "
+                      "tincidunt ac. Vivamus quis libero vitae ex semper facilisis. Duis euismod, ligula ut mattis rhoncus, quam leo pellentesque "
+                      "augue, at facilisis libero felis in purus. Sed nec urna mi. Duis scelerisque, nulla eu bibendum scelerisque, mauris dolor "
+                      "cursus neque, ut vulputate quam quam nec dui.\n\n"
+                      "Quisque in sodales lacus. Integer quis ultricies arcu. Vestibulum vehicula euismod nisi in sodales. Vivamus auctor tortor a "
+                      "magna venenatis, nec tincidunt velit cursus. Integer ut metus eu dui posuere euismod. Morbi euism...\n"),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

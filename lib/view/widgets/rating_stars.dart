@@ -13,17 +13,17 @@ class RatingStars extends StatelessWidget {
         5,
             (index) {
           if (index < rating.floor()) {
-            return Icon(
+            return const Icon(
               Icons.star,
               color: Colors.amber,
             );
           } else if (index == rating.floor() && rating % 1 != 0) {
-            return Icon(
+            return const Icon(
               Icons.star_half,
               color: Colors.amber,
             );
           } else {
-            return Icon(
+            return const Icon(
               Icons.star_border,
               color: Colors.amber,
             );

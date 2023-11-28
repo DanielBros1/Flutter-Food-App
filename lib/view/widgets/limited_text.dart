@@ -25,7 +25,7 @@ class _LimitedTextState extends State<LimitedText> {
           // We should check this condition, else method .substring can return RangeError
             widget.text.length <= widget.maxLength
                 ? widget.text
-                : widget.text.substring(0, widget.maxLength) + '...'),
+                : '${widget.text.substring(0, widget.maxLength)}...'),
         // If text is longer than maxLength => user can expand it
         if (widget.text.length > widget.maxLength)
           GestureDetector(

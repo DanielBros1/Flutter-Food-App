@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class RegisterPage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
           debugPrint(e.code);
           switch (e.code) {
             case 'weak-password':
-              errorMessage = "Password should be at lest 6 charackters ";
+              errorMessage = "Password should be at lest 6 characters ";
           }
         }
         AwesomeDialog(
@@ -68,11 +69,15 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future addUserToDatabase() async {
+    int randomNumber = Random().nextInt(40);
+    String avatarURL = 'https://picsum.photos/200/300?image=$randomNumber';
+
     await FirebaseFirestore.instance.collection('users').add({
       'email': _emailController.text.trim(),
       'firstName': _firstNameController.text.trim(),
       'lastName': _lastNameController.text.trim(),
       'password': _passwordController.text.trim(),
+      'avatar': avatarURL,
     });
   }
 
@@ -105,22 +110,22 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Hello There!',
                   style: TextStyle(
                     fontSize: 42,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   """Register below with your details""",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
 
@@ -146,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -172,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -198,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -226,7 +231,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -253,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 35,
                 ),
                 // SignIn Button
@@ -262,12 +267,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: GestureDetector(
                     onTap: signUp,
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.brown,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Sign Up',
                           style: TextStyle(
@@ -280,13 +285,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'I am a member ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -294,7 +299,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     GestureDetector(
                       onTap: widget.showLoginPage,
-                      child: Text(
+                      child: const Text(
                           'Login now',
                           style: TextStyle(
                             color: Colors.blue,
@@ -304,7 +309,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
               ],
