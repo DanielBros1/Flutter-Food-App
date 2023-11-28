@@ -27,19 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     List<Restaurant> filteredRestaurants = widget.listNotifier.value;
 
-    for (var restaurant in filteredRestaurants) {
-      debugPrint(
-          'Restaurant: ${restaurant.name}, Category: ${restaurant.restaurantCategory}');
-    }
-
-    debugPrint('Selected Category: $selectedCategory');
 
     if (selectedCategory == 'all') {
       filteredRestaurants = widget.listNotifier.value.toList();
     } else {
       if (selectedCategory.isNotEmpty) {
-        debugPrint('selectedCategory: Is not empty');
-        //  debugPrint('W: ${}');
         filteredRestaurants = widget.listNotifier.value
             .where((restaurant) =>
                 restaurant.restaurantCategory.name == selectedCategory)
@@ -51,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.blueGrey.shade100,
       appBar: AppBar(
         backgroundColor: Colors.brown.shade200,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20),
           ),
@@ -82,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           MouseRegion(
@@ -99,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: IconButton(
               onPressed: () {},
               icon: isSearchHovering
-                  ? Icon(
+                  ? const Icon(
                       Icons.saved_search_sharp,
                       color: Colors.blue,
                     )
@@ -109,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           IconButton(
@@ -138,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
-        title: Text('Search your restaurant'),
+        title: const Text('Search your restaurant'),
         toolbarOpacity: 0.7,
         toolbarHeight: 40,
       ),
@@ -148,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Container(
               color: Colors.blueGrey.shade100,
-              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -160,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             selectedCategory = 'all';
                           });
                         }),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -171,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -182,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -193,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -204,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -215,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -226,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     CategoryButton(
@@ -243,14 +235,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             /// Box between Category and ListBuilder widgets
-            SizedBox(
+            const SizedBox(
               height: 8.0,
             ),
             Expanded(
               child: ListView.builder(
                 itemCount: filteredRestaurants.length,
                 itemBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: MyListTile(
                     restaurant: filteredRestaurants[index],
                     listNotifier: widget.listNotifier,
@@ -261,12 +253,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: floating_action_button(context),
+      floatingActionButton: floatingActionButtonScreen(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
-  FloatingActionButton floating_action_button(BuildContext context) {
+  FloatingActionButton floatingActionButtonScreen(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
         showModalBottomSheet(
@@ -277,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return Container(
                 decoration: BoxDecoration(
                   color: Colors.blueGrey.shade200,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
@@ -286,44 +278,31 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.grey.withOpacity(0.7),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
                 // color: Colors.blueGrey.shade500,
                 height: MediaQuery.of(context).size.height * 0.45,
                 width: MediaQuery.of(context).size.width * 0.9,
-                padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 alignment: Alignment.center,
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Colors.brown.shade200,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          Text('Distance'),
-                          Slider(
-                            value: distanceValue,
-                            onChanged: (newValue) {
-                              setState(() {
-                                distanceValue = newValue;
-                              });
-                            },
-                            min: 0,
-                            max: 100,
-                          ),
-                        ],
-                      )
-                      //      Slider(value: distance, onChanged: onChanged)
+                      Text("Still in progress...",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold)),
                     ],
                   ),
                 ),
@@ -331,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
             });
       },
       backgroundColor: Colors.blueGrey.shade400,
-      child: Icon(Icons.search_rounded),
+      child: const Icon(Icons.search_rounded),
     );
   }
 }

@@ -80,9 +80,15 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
                 documentSnapshotFuture.then((DocumentSnapshot<Object?>? documentSnapshot) {
                   if (documentSnapshot != null) {
                     Map<String, dynamic> userData = documentSnapshot.data() as Map<String, dynamic>;
-                    String userName = userData['firstName'] ?? userData['lastName'] ?? '';
+                    String userFistName = userData['firstName'] ?? '';
+                    String userLastName = userData['lastName'] ?? '';
+                    String userName = '$userFistName $userLastName';
+
                     String userAvatar = userData['avatar'] ?? '';
-                    String date = DateTime.now().toString();
+
+                    DateTime now = DateTime.now();
+                    String date = '${now.year}-${now.month}-${now.day}';
+
                     String comment = _commentController.text;
                     String restaurantId = widget.restaurantId;
                     String userId = documentSnapshot.id;
@@ -133,9 +139,7 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
    */
   Future<DocumentSnapshot<Object?>?> findUserInFirestore() async {
     User? user = FirebaseAuth.instance.currentUser;
-    debugPrint('User: ${user?.email}');
     DocumentSnapshot? documentSnapshot;
-    String userId = '';
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -144,37 +148,9 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
         .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         documentSnapshot = querySnapshot.docs[0];
-        userId = documentSnapshot!.id;
-        debugPrint('I FOUND IT:   $userId => ${documentSnapshot!.data()}');
-        debugPrint('User ID: $userId');
       } else {
-        debugPrint('User with email ${user.email} not found');
       }
     });
-
-
-    // await FirebaseFirestore.instance
-    //     .collection('users')
-    //     .doc(userId) // Use the userId to reference the specific document
-    //     .get()
-    //     .then((DocumentSnapshot documentSnapshot) {
-    //   if (documentSnapshot.exists) {
-    //     Map<String, dynamic> userData = documentSnapshot.data() as Map<String, dynamic>;
-    //
-    //     String userEmail = userData['email'] ?? ''; // Use the field name to access the value
-    //     String userFirstName = userData['firstName'] ?? '';
-    //     String userLastName = userData['lastName'] ?? '';
-    //     // Extract other fields as needed
-    //
-    //     debugPrint('User Email: $userEmail');
-    //     debugPrint('User First Name: $userFirstName');
-    //     debugPrint('User Last Name: $userLastName');
-    //     // Print or use other extracted fields
-    //   } else {
-    //     debugPrint('User with ID $userId does not exist');
-    //   }
-    // });
-
     return documentSnapshot;
   }
 
@@ -189,14 +165,6 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
     required String userId,
   }) async {
     try {
-      debugPrint('User name: $userName');
-      debugPrint('User avatar: $userAvatar');
-      debugPrint('Date: $date');
-      debugPrint('Rating: $rating');
-      debugPrint('Comment: $comment');
-      debugPrint('Restaurant ID: $restaurantId');
-      debugPrint('User ID: $userId');
-      debugPrint('Adding opinion to Firestore...');
 
       await FirebaseFirestore.instance.collection('opinions').add({
         'userName': userName,

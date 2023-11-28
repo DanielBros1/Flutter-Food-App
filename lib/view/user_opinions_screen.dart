@@ -31,12 +31,11 @@ class _UserOpinionsScreenState extends State<UserOpinionsScreen> {
   Widget build(BuildContext context) {
     debugPrint('Actually restaurant id is: ${widget.id}');
 
-   // List<UserOpinion> userOpinions =
     return Scaffold(
       backgroundColor: Colors.brown.shade50,
       appBar: AppBar(
         backgroundColor: Colors.brown.shade50,
-        title: Text('User Opinions'),
+        title: const Text('User Opinions'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -52,25 +51,18 @@ class _UserOpinionsScreenState extends State<UserOpinionsScreen> {
             } else {
               List<UserOpinion> userOpinions = snapshot.data!;
 
-              debugPrint('Before filtering:');
-              for (var opinion in userOpinions) {
-                debugPrint('For opinionID: ${opinion.id} restaurantID: ${opinion.restaurantId}');
-              }
+
               // Filter userOpinion by restaurantID
               userOpinions = userOpinions.where((userOpinion) => userOpinion.restaurantId == widget.id).toList();
 
-              debugPrint('After filtering:');
-              for (var opinion in userOpinions) {
-                debugPrint('For opinionID: ${opinion.id} restaurantID: ${opinion.restaurantId}');
-              }
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'User Opinions',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Expanded(
                     child: ListView.builder(
                       itemCount: userOpinions.length,
@@ -78,7 +70,7 @@ class _UserOpinionsScreenState extends State<UserOpinionsScreen> {
                         final opinion = userOpinions[index];
                         return Card(
                           elevation: 5,
-                          margin: EdgeInsets.symmetric(vertical: 8),
+                          margin: const EdgeInsets.symmetric(vertical: 8),
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundImage: NetworkImage(opinion.userAvatar),
@@ -88,9 +80,9 @@ class _UserOpinionsScreenState extends State<UserOpinionsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(opinion.date),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 RatingStars(rating: opinion.rating),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 LimitedText(
                                   text: opinion.comment,
                                   maxLength: 200,
@@ -111,7 +103,7 @@ class _UserOpinionsScreenState extends State<UserOpinionsScreen> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 14,
                   ),
                   Center(
@@ -124,18 +116,18 @@ class _UserOpinionsScreenState extends State<UserOpinionsScreen> {
                             ),
                         );
                       },
-                      child: Text('Add Opinion'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
                         minimumSize:
                             Size(MediaQuery.of(context).size.width * 0.3, 60),
                         elevation: 0,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(50),
                           ),
                         ),
                       ),
+                      child: const Text('Add Opinion'),
                     ),
                   ),
                 ],

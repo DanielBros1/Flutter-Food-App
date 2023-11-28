@@ -12,7 +12,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo Main_screen nie jest sprawdzony, ani wytestowany, nalezy utworzyc konto w firebase
     return Scaffold(
       body: FutureBuilder<List<Restaurant>>(
         future: fetchRestaurantsFromFirestore(),
@@ -31,13 +30,13 @@ class MainScreen extends StatelessWidget {
                 if (authSnapshot.hasData) {
                   return HomeScreen(listNotifier: ListNotifier(snapshot.data!));
                 } else {
-                  return AuthPage();
+                  return const AuthPage();
                 }
               },
             );
           } else {
             // No data available
-            return Text('No data available');
+            return const Text('No data available');
           }
         },
       ),

@@ -25,11 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
- // home: AuthPage(),
-      home: MainScreen(),
- //     home: HomeScreen(
- //       listNotifier: ListNotifier(listOfRestaurant),
- //     ),
+      home: const MainScreen(),
     );
   }
 }

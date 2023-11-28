@@ -26,7 +26,6 @@ class _MyListTileState extends State<MyListTile> {
     return GestureDetector(
       onTap: () {
         debugPrint(widget.restaurant.name);
-        print('Clicked');
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -61,11 +60,10 @@ class _MyListTileState extends State<MyListTile> {
                     color: Colors.grey,
                     width: 1.0,
                   ),
-                  //   borderRadius: BorderRadius.circular(10),
                 ),
                 child: ListTile(
                   // default Padding was set on left: 16.0 and right: 24.0
-                  contentPadding: EdgeInsets.only(left: 12.0, right: 10.0),
+                  contentPadding: const EdgeInsets.only(left: 12.0, right: 10.0),
                   title: Text(
                     widget.restaurant.name,
                     style: const TextStyle(
@@ -85,7 +83,7 @@ class _MyListTileState extends State<MyListTile> {
                                 builder: (context) => UserOpinionsScreen(id: widget.restaurant.id)),
                           );
                         },
-                        child: Row(
+                        child: const Row(
                           children: [
                             Tooltip(
                               message: 'See user reviews',
@@ -110,11 +108,11 @@ class _MyListTileState extends State<MyListTile> {
                               color: Colors.blueGrey.shade700,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
                           Text('${widget.restaurant.estimatedTime} min'),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Tooltip(
@@ -127,7 +125,7 @@ class _MyListTileState extends State<MyListTile> {
                                   : Colors.blueGrey.shade700,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
                           Text(
@@ -138,17 +136,17 @@ class _MyListTileState extends State<MyListTile> {
                                   : null,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Tooltip(
-                            message: 'Minumum order value',
+                            message: 'Minimum order value',
                             child: Icon(
                               Icons.shopping_bag_outlined,
                               color: Colors.blueGrey.shade700,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
                           Text('${widget.restaurant.minimumOrderValue}\$'),
@@ -162,9 +160,6 @@ class _MyListTileState extends State<MyListTile> {
                     child: Image.asset(
                       widget.restaurant.imageLogoAssetPath ??
                           'assets/img_pizza_this.png',
-                      //  width: 34,
-                      //  height: 34,
-                      //    ),
                     ),
                   ),
                   hoverColor: Colors.deepOrangeAccent,
