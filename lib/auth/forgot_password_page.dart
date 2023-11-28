@@ -63,7 +63,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              'Enter yout email and we will send you a password reset link',
+              'Enter your email and we will send you a password reset link',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,

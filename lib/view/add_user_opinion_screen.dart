@@ -22,21 +22,21 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
       backgroundColor: Colors.brown.shade100,
       appBar: AppBar(
         backgroundColor: Colors.blueGrey.shade100,
-        title: Text('Add Your Opinion'),
+        title: const Text('Add Your Opinion'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Comment',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
               controller: _commentController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter your comment',
               ),
               maxLines: 3,
@@ -47,12 +47,12 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
                 return null;
               },
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Rating',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             RatingBar.builder(
               glowColor: Colors.amber,
               unratedColor: Colors.grey.shade400,
@@ -63,7 +63,8 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
               allowHalfRating: true,
               itemCount: 5,
               itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => const Icon(
+              itemBuilder: (context, _) =>
+              const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
@@ -73,13 +74,16 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
                 });
               },
             ),
-            SizedBox(height: 22),
+            const SizedBox(height: 22),
             ElevatedButton(
               onPressed: () {
-                Future<DocumentSnapshot<Object?>?> documentSnapshotFuture = findUserInFirestore();
-                documentSnapshotFuture.then((DocumentSnapshot<Object?>? documentSnapshot) {
+                Future<DocumentSnapshot<
+                    Object?>?> documentSnapshotFuture = findUserInFirestore();
+                documentSnapshotFuture.then((
+                    DocumentSnapshot<Object?>? documentSnapshot) {
                   if (documentSnapshot != null) {
-                    Map<String, dynamic> userData = documentSnapshot.data() as Map<String, dynamic>;
+                    Map<String, dynamic> userData = documentSnapshot
+                        .data() as Map<String, dynamic>;
                     String userFistName = userData['firstName'] ?? '';
                     String userLastName = userData['lastName'] ?? '';
                     String userName = '$userFistName $userLastName';
@@ -110,16 +114,19 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 minimumSize:
-                Size(MediaQuery.of(context).size.width * 0.3, 60),
+                Size(MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.3, 60),
                 elevation: 0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
                 ),
               ),
               child: const Text(
-                  'Submit Opinion',),
+                'Submit Opinion',),
             ),
           ],
         ),
@@ -148,8 +155,7 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
         .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         documentSnapshot = querySnapshot.docs[0];
-      } else {
-      }
+      } else {}
     });
     return documentSnapshot;
   }
@@ -165,7 +171,6 @@ class AddUserOpinionScreenState extends State<AddUserOpinionScreen> {
     required String userId,
   }) async {
     try {
-
       await FirebaseFirestore.instance.collection('opinions').add({
         'userName': userName,
         'userAvatar': userAvatar,

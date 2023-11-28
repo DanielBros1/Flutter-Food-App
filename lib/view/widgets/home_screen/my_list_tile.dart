@@ -21,6 +21,28 @@ class MyListTile extends StatefulWidget {
 }
 
 class _MyListTileState extends State<MyListTile> {
+  // late Reference _imageRef;
+  // late String _imageUrl;
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _imageRef = FirebaseStorage.instance.ref().child(widget.restaurant.imageMainAssetPath ?? 'assets/foto_cluckin_bell.png');
+  //   _loadImage();
+  // }
+  //
+  // Future<void> _loadImage() async {
+  //   try {
+  //     final url = await _imageRef.getDownloadURL();
+  //     setState(() {
+  //       _imageUrl = url;
+  //     });
+  //   } catch (e) {
+  //     debugPrint('Error: $e');
+  //   }
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
