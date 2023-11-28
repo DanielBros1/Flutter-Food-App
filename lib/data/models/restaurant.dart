@@ -10,6 +10,9 @@ class Restaurant {
   final String? imageMainAssetPath;
   final String? imageLogoAssetPath;
   final RestaurantCategory restaurantCategory;
+  final double? deliveryCost;
+  final double? estimatedTime;
+  final double? minimumOrderValue;
 
   const Restaurant({
     required this.id,
@@ -19,5 +22,8 @@ class Restaurant {
     this.color = Colors.lightGreen,
     this.imageMainAssetPath,
     this.imageLogoAssetPath,
+    this.deliveryCost,
+    this.estimatedTime,
+    this.minimumOrderValue,
   });
 }

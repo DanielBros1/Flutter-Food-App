@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_ordering_gta/auth/auth_page.dart';
-import 'package:food_ordering_gta/data/models/list_of_restaurant.dart';
+import 'package:food_ordering_gta/data/firebase/restaurants_download.dart';
 import 'package:food_ordering_gta/data/providers/list_notifier.dart';
 import 'package:food_ordering_gta/view/home_screen.dart';
+
+import '../data/models/restaurant.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -12,16 +14,30 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     //todo Main_screen nie jest sprawdzony, ani wytestowany, nalezy utworzyc konto w firebase
     return Scaffold(
-      body: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
+      body: FutureBuilder<List<Restaurant>>(
+        future: fetchRestaurantsFromFirestore(),
         builder: (context, snapshot) {
-          debugPrint('check if snapshot has a data');
-          if (snapshot.hasData) {
-            debugPrint('snapshot has data');
-            return HomeScreen(listNotifier: ListNotifier(listOfRestaurant));
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Data is still being loaded
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            // An error occurred
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            // Data has been loaded successfully
+            return StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, authSnapshot) {
+                if (authSnapshot.hasData) {
+                  return HomeScreen(listNotifier: ListNotifier(snapshot.data!));
+                } else {
+                  return AuthPage();
+                }
+              },
+            );
           } else {
-            debugPrint('snapshot has no data');
-            return AuthPage();
+            // No data available
+            return Text('No data available');
           }
         },
       ),

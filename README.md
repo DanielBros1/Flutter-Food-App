@@ -14,3 +14,6 @@ Dependencies used in project:
 - Data Base to store all the restaurants
 - System to add your restaurant. Based on HTML
 - 24h to verify new added restaurant by administrator
+-
+- Add restaurant to favorite list
+- Add rating

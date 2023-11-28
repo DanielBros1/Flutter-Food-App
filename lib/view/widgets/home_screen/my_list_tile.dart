@@ -25,7 +25,7 @@ class _MyListTileState extends State<MyListTile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        debugPrint('${widget.restaurant}');
+        debugPrint(widget.restaurant.name);
         print('Clicked');
         Navigator.push(
           context,
@@ -47,11 +47,11 @@ class _MyListTileState extends State<MyListTile> {
         ),
         child: Column(
           children: [
-              Image.asset(
-                widget.restaurant.imageMainAssetPath ??
-                    'assets/foto_cluckin_bell.png',
-                fit: BoxFit.cover,
-              ),
+            Image.asset(
+              widget.restaurant.imageMainAssetPath ??
+                  'assets/foto_cluckin_bell.png',
+              fit: BoxFit.cover,
+            ),
             ColoredBox(
               color: Colors.white10,
               child: Container(
@@ -78,10 +78,11 @@ class _MyListTileState extends State<MyListTile> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          debugPrint('This is restaurant: ${widget.restaurant.name}. ID: ${widget.restaurant.id}');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => UserOpinionsScreen()),
+                                builder: (context) => UserOpinionsScreen(id: widget.restaurant.id)),
                           );
                         },
                         child: Row(
@@ -112,7 +113,7 @@ class _MyListTileState extends State<MyListTile> {
                           SizedBox(
                             width: 2,
                           ),
-                          Text('25 min'),
+                          Text('${widget.restaurant.estimatedTime} min'),
                           SizedBox(
                             width: 10,
                           ),
@@ -121,13 +122,22 @@ class _MyListTileState extends State<MyListTile> {
                             message: 'Delivery cost',
                             child: Icon(
                               Icons.delivery_dining_outlined,
-                              color: Colors.blueGrey.shade700,
+                              color: widget.restaurant.deliveryCost == 0
+                                  ? Colors.lightGreen
+                                  : Colors.blueGrey.shade700,
                             ),
                           ),
                           SizedBox(
                             width: 2,
                           ),
-                          Text('2\$'),
+                          Text(
+                            '${widget.restaurant.deliveryCost}\$',
+                            style: TextStyle(
+                              color: widget.restaurant.deliveryCost == 0
+                                  ? Colors.lightGreen
+                                  : null,
+                            ),
+                          ),
                           SizedBox(
                             width: 10,
                           ),
@@ -141,7 +151,7 @@ class _MyListTileState extends State<MyListTile> {
                           SizedBox(
                             width: 2,
                           ),
-                          Text('min. 5\$'),
+                          Text('${widget.restaurant.minimumOrderValue}\$'),
                         ],
                       ),
                     ],
@@ -170,4 +180,3 @@ class _MyListTileState extends State<MyListTile> {
     );
   }
 }
-

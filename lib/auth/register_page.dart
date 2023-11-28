@@ -39,6 +39,9 @@ class _RegisterPageState extends State<RegisterPage> {
           email: _emailController.text.trim(),
           password: _passwordController.text,
         );
+        //add user details to database
+        addUserToDatabase();
+
       } catch (e) {
         String errorMessage = "An error occurred during sign-up ";
         if (e is FirebaseAuthException) {
@@ -64,9 +67,12 @@ class _RegisterPageState extends State<RegisterPage> {
     } else {}
   }
 
-  Future addUserDetails() async {
+  Future addUserToDatabase() async {
     await FirebaseFirestore.instance.collection('users').add({
-      //
+      'email': _emailController.text.trim(),
+      'firstName': _firstNameController.text.trim(),
+      'lastName': _lastNameController.text.trim(),
+      'password': _passwordController.text.trim(),
     });
   }
 

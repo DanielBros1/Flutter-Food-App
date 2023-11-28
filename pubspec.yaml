@@ -16,6 +16,8 @@ dependencies:
   cloud_firestore: ^4.9.3
   lottie: ^2.6.0
   awesome_dialog: ^3.1.0
+  uuid: ^4.2.1
+  flutter_rating_bar: ^4.0.1
 
 
 dev_dependencies:
