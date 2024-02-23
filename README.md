@@ -3,24 +3,21 @@
 
 ## Project Description
 
-The Food Explorer App is a mobile application developed using the Flutter framework, designed to provide users with a streamlined experience in discovering, exploring, and reviewing local restaurants. Leveraging Firebase for robust backend functionalities, the app seamlessly integrates user authentication, cloud storage, and a scalable database for efficient data management.
+The Food Explorer App is a mobile app created with Flutter to help users find and rate local restaurants. It uses Firebase for backend tasks like user authentication, storing data, and managing reviews 
 
 ## Key Features
 
-1. Restaurant Discovery
-Browse a list of restaurants, each accompanied by visually appealing images.
-2. Detailed Restaurant Insights
-Access comprehensive details about each restaurant, including descriptions, estimated delivery times, delivery costs, and minimum order values.
+1. Discover Restaurants
+User can browse through a list of restaurants with images
+2. Detailed Info
+User can access detailed insights about each restaurant, including descriptions, delivery times, costs, and minimum orders
 3. User Reviews
-Contribute to the community by sharing your opinions through user reviews.
-Read and evaluate the experiences of other users to make informed dining decisions.
+Users can read and leave reviews to help others make informed dining choices
 
 
 ## Widget Description
 
-1. **Authentication and Registration**: Elevate the user experience with a hassle-free authentication and registration system, ensuring a secure and personalized journey. Users can seamlessly log in or register, with an intuitive and user-friendly interface that enhances the onboarding process.
-
-  The authentication process is visually enriched. Users can effortlessly navigate through the registration steps, providing a seamless entry point to the app.
+1. **Authentication and Registration**: Users can easily sign in and register for a secure and personalized experience
 <br>
 
 <img src="https://github.com/DanielBros1/Flutter-Food-App/assets/112472952/75d99abb-9847-49eb-9754-c8270043e394" width="400">
@@ -29,7 +26,7 @@ Read and evaluate the experiences of other users to make informed dining decisio
 <br>
 <br>
 
-2. **Password Reminder**: Empower users with the ability to recover their passwords effortlessly. The app incorporates a robust password recovery mechanism, allowing users to receive a reset code delivered to their email address. This ensures a seamless recovery process, enhancing user satisfaction and security.
+2. **Password Reminder**: Users can easily recover forgotten passwords via email for added convenience and security.
 
   The password recovery feature is integrated into the Firebase
 <br>
@@ -39,7 +36,7 @@ Read and evaluate the experiences of other users to make informed dining decisio
 <br>
 <br>
 
-3. **Restaurant Display**: The exhibition presents restaurants with photos and basic information about the restaurant.
+3. **Restaurant Display**: Presents restaurants with photos and basic information about the restaurant.
 <br>
 
 The information is retrieved from the database created in the Firestore Database
@@ -51,9 +48,9 @@ The information is retrieved from the database created in the Firestore Database
 <br>
 <br>
 
-4. **Rating Restaurants:**: Users can browse and rate restaurants based on their unique experiences, contributing to a dynamic community of food enthusiasts.
+4. **Rating Restaurants:**: Users can browse and rate restaurants
 
-The rating system offering users an intuitive and straightforward way to express their opinions on the restaurants they visit.
+The rating system offering users a way to express their opinions on the restaurants they visit.
 <br>
 
 <img src="https://github.com/DanielBros1/Flutter-Food-App/assets/112472952/456b8cfc-7e6d-4bb7-a2ae-30e18e3e8ee6" width="400">
@@ -71,8 +68,7 @@ The rating system offering users an intuitive and straightforward way to express
 <br>
 <br>
 
-6. **Firebase Integration**: The application uses the capabilities of Firebase to store information about opinions, users and restaurants
-Firebase is seamlessly integrated into the application architecture, ensuring a smooth and reliable user experience.
+6. **Firebase Integration**: The application uses Firebase to store information about opinions, users and restaurants
 <br>
 
 <img src="https://github.com/DanielBros1/Flutter-Food-App/assets/112472952/696c2a05-bc8d-4268-8cae-567465351bb0" width="400">
@@ -81,7 +77,7 @@ Firebase is seamlessly integrated into the application architecture, ensuring a 
 <br>
 <br>
 
-7. **Lottie Animation and AwesomeDialogs**: Incorporation of Lottie for visually appealing animations and enhanced visual effects.
+7. **Lottie Animation and AwesomeDialogs**: Lottie library is used for visually animations and visual effects.
 <br>
 
 <img src="https://github.com/DanielBros1/Flutter-Food-App/assets/112472952/2911b9ba-53a6-4630-89f5-f10954ea6e7f" width="400">
@@ -92,26 +88,19 @@ Firebase is seamlessly integrated into the application architecture, ensuring a 
 ## Core Technology Stack
 <br>
 
-- [Flutter Framework](https://flutter.dev/):
-Utilized Flutter to build a cross-platform mobile application with a consistent and engaging user interface.
+- [Flutter Framework](https://flutter.dev/)
 <br>
 
-
-- [Firebase Integration](https://firebase.google.com/):
+- [Firebase](https://firebase.google.com/):
 Implemented Firebase for:
-Secure user authentication to manage user accounts.
-Cloud storage for efficient storage and retrieval of media assets.
-A scalable Firestore database to handle restaurant and user review data.
-
+  - Secure user authentication to manage user accounts.
+  - Cloud storage for storage and retrieval of media assets.
+  - Firestore database to handle restaurant and user review data.
 <br>
 
-- [Lottie](https://airbnb.design/lottie/):
-Incorporated Lottie for visually appealing animations and enhanced visual effects throughout the app.
-Lottie, developed by Airbnb, enables the seamless integration of high-quality animations into Flutter applications. This addition brings a visually engaging and dynamic aspect to the user interface, contributing to an overall enhanced user experience. 
-
+- [Lottie](https://airbnb.design/lottie/)
 <br>
 <br>
-
 ### Additional Screenshots
 
 <br>
